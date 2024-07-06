@@ -23,7 +23,7 @@ namespace Vidly.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(@"Host=localhost; Port=5432; Database=Vidly; Username=postgres; Password=oladapo; Include Error Detail=True;");
+            optionsBuilder.UseNpgsql(@"Host=localhost; Port=5432; Database=Vidly; Username=; Password=; Include Error Detail=True;");
         }
 
 
