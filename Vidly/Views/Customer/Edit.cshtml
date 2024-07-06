@@ -1,0 +1,14 @@
+﻿@model Vidly.Models.Customer
+@{
+
+    ViewData["Title"] = " Customer Edit Page";
+}
+
+<h1> @Model.Name</h1>
+<ul>
+    <li>@Model.MemberShipType.Name</li>
+    @if (Model.BirthDate.HasValue)
+    {
+        <li>@Model.BirthDate.Value.ToShortDateString()</li>
+    }
+</ul>
