@@ -65,6 +65,7 @@ namespace Vidly.Controllers
             var membershipTypes = _context.MemberShipType.ToList();
             var viewModel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MemberShipTypes = membershipTypes
             };
 
@@ -72,8 +73,20 @@ namespace Vidly.Controllers
         }
 
         [HttpPost] //This attribute ensure it can only be called via http post
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MemberShipTypes = _context.MemberShipType.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer);
